@@ -1,6 +1,6 @@
 import { Product } from "@prisma/client";
 
-interface ProductWithTotalPrice extends Product {
+export interface ProductWithTotalPrice extends Product {
   totalPrice: number;
 }
 
@@ -19,4 +19,8 @@ export function totalPriceFormatted(product: Product): ProductWithTotalPrice {
     ...product,
     totalPrice,
   };
+}
+
+export function normalizeValue(value: number) {
+  return value.toFixed(2).replace(".", ",");
 }
