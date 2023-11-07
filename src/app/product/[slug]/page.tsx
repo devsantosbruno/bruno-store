@@ -1,9 +1,9 @@
-import { prismaClient } from "@/lib/prisma";
-import { Images } from "./components/images";
-import { Info } from "./components/Info";
-import { totalPriceFormatted } from "@/helpers/product";
 import { ProductsList } from "@/components/ProductsList";
-import { Title } from "@/app/(home)/components/Title";
+import { Title } from "@/components/Title";
+import { totalPriceFormatted } from "@/helpers/product";
+import { prismaClient } from "@/lib/prisma";
+import { Images } from "./components/Images";
+import { Info } from "./components/Info";
 
 interface ProductPageProps {
   params: {
@@ -44,7 +44,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       </div>
 
       <div className="mt-14">
-        <Title title="Produtos relacionados" />
+        <Title title="Produtos Recomendados" />
         <ProductsList products={product.category.products} />
       </div>
     </div>
