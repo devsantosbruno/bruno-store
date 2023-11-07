@@ -12,7 +12,7 @@ export function Product({ product }: ProductProps) {
 
   return (
     <div className="flex max-w-[156px] flex-col gap-4">
-      <div className="relative flex h-[170px] w-[156px] items-center justify-center rounded-lg bg-accent">
+      <div className="relative flex h-full w-full min-w-[156px] items-center justify-center rounded-lg bg-accent">
         <Image
           src={product.imageUrls[0]}
           width={95}
