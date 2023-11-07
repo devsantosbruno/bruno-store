@@ -37,15 +37,15 @@ export function Product({ product }: ProductProps) {
         <p className="truncate text-sm">{product.name}</p>
 
         <div className="flex items-center gap-2">
+          <p className="truncate font-semibold">
+            R$ {normalizeValue(product.totalPrice)}
+          </p>
+
           {hasDiscount && (
-            <p className="truncate font-semibold">
-              R$ {normalizeValue(product.totalPrice)}
+            <p className="truncate text-xs line-through opacity-75">
+              R$ {normalizeValue(Number(product.basePrice))}
             </p>
           )}
-
-          <p className="truncate text-xs line-through opacity-75">
-            R$ {normalizeValue(Number(product.basePrice))}
-          </p>
         </div>
       </div>
     </div>
