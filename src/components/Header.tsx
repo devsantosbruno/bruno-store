@@ -13,7 +13,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { Separator } from "./ui/separator";
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "./ui/sheet";
+import Link from "next/link";
 
 export function Header() {
   const { status, data } = useSession();
@@ -72,20 +79,34 @@ export function Header() {
               {isLogged ? "Fazer Logout" : "Fazer Login"}
             </Button>
 
-            <Button variant="outline" className="w-full justify-start gap-2">
-              <HomeIcon size={16} />
-              Inicio
-            </Button>
+            <SheetClose asChild>
+              <Link href="/">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-2"
+                >
+                  <HomeIcon size={16} />
+                  Inicio
+                </Button>
+              </Link>
+            </SheetClose>
 
             <Button variant="outline" className="w-full justify-start gap-2">
               <PercentIcon size={16} />
               Ofertas
             </Button>
 
-            <Button variant="outline" className="w-full justify-start gap-2">
-              <ListOrderedIcon size={16} />
-              Catálogo
-            </Button>
+            <SheetClose asChild>
+              <Link href="/catalog">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-2"
+                >
+                  <ListOrderedIcon size={16} />
+                  Catálogo
+                </Button>
+              </Link>
+            </SheetClose>
           </div>
         </SheetContent>
       </Sheet>
