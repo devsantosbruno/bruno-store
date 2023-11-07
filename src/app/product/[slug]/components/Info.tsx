@@ -36,7 +36,7 @@ export function Info({ product }: InfoProps) {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-lg">{product.name}</h1>
+      <h1 className="mb-1 text-lg">{product.name}</h1>
 
       <div className="flex items-center gap-2">
         <h2 className="text-xl font-bold">
@@ -76,7 +76,7 @@ export function Info({ product }: InfoProps) {
         </Button>
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="mt-8 flex flex-col gap-3">
         <h3 className="font-bold">Descrição</h3>
         <p className="text-justify text-sm opacity-70">{product.description}</p>
       </div>
