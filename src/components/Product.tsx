@@ -44,7 +44,7 @@ export function Product({ product }: ProductProps) {
             </p>
 
             {hasDiscount && (
-              <p className="truncate text-xs line-through opacity-75">
+              <p className="truncate text-xs line-through opacity-50">
                 R$ {normalizeValue(Number(product.basePrice))}
               </p>
             )}

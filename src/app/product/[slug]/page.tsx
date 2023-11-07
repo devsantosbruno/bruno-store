@@ -1,5 +1,7 @@
 import { prismaClient } from "@/lib/prisma";
 import { Images } from "./components/images";
+import { Info } from "./components/Info";
+import { totalPriceFormatted } from "@/helpers/product";
 
 interface ProductPageProps {
   params: {
@@ -20,8 +22,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <div>
-      <h1>{product.name}</h1>
       <Images imageUrls={product.imageUrls} name={product.name} />
+
+      <div className="mt-8 px-5">
+        <Info product={totalPriceFormatted(product)} />
+      </div>
     </div>
   );
 }
