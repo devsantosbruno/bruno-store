@@ -11,8 +11,8 @@ export function Product({ product }: ProductProps) {
   const hasDiscount = product.discountPercentage > 0;
 
   return (
-    <div className="flex max-w-[156px] flex-col gap-4">
-      <div className="relative flex h-full w-full min-w-[156px] items-center justify-center rounded-lg bg-accent">
+    <div className="flex max-w-[170px] flex-col gap-4">
+      <div className="relative flex h-full w-[170px] items-center justify-center rounded-lg bg-accent">
         <Image
           src={product.imageUrls[0]}
           width={95}
@@ -38,12 +38,12 @@ export function Product({ product }: ProductProps) {
 
         <div className="flex items-center gap-2">
           {hasDiscount && (
-            <p className="font-semibold">
+            <p className="truncate font-semibold">
               R$ {normalizeValue(product.totalPrice)}
             </p>
           )}
 
-          <p className="text-xs line-through opacity-75">
+          <p className="truncate text-xs line-through opacity-75">
             R$ {normalizeValue(Number(product.basePrice))}
           </p>
         </div>
