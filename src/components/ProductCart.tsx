@@ -10,7 +10,7 @@ interface ProductCartProps {
 }
 
 export function ProductCart({ product }: ProductCartProps) {
-  const { decreaseProductQuantity, increaseProductQuantity } =
+  const { decreaseProductQuantity, increaseProductQuantity, removeProduct } =
     useContext(CartContext);
 
   const hasDiscount = product.discountPercentage > 0;
@@ -21,6 +21,10 @@ export function ProductCart({ product }: ProductCartProps) {
 
   function handleIncreaseQuantity() {
     increaseProductQuantity(product.id);
+  }
+
+  function handleRemoveProduct() {
+    removeProduct(product.id);
   }
 
   return (
@@ -76,7 +80,7 @@ export function ProductCart({ product }: ProductCartProps) {
         </div>
       </div>
 
-      <Button size="icon" variant="outline">
+      <Button size="icon" variant="outline" onClick={handleRemoveProduct}>
         <TrashIcon size={16} />
       </Button>
     </div>
