@@ -1,8 +1,8 @@
 import { normalizeValue } from "@/helpers/product";
-import { CartProduct } from "@/providers/cart";
+import { CartContext, CartProduct } from "@/providers/cart";
 import { ArrowLeftIcon, ArrowRightIcon, TrashIcon } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext } from "react";
 import { Button } from "./ui/button";
 
 interface ProductCartProps {
@@ -10,19 +10,17 @@ interface ProductCartProps {
 }
 
 export function ProductCart({ product }: ProductCartProps) {
+  const { decreaseProductQuantity, increaseProductQuantity } =
+    useContext(CartContext);
+
   const hasDiscount = product.discountPercentage > 0;
 
-  const [quantity, setQuantity] = useState(product.quantity);
-
   function handleDecreaseQuantity() {
-    if (quantity === 1) {
-      return;
-    }
-    setQuantity((prev) => prev - 1);
+    decreaseProductQuantity(product.id);
   }
 
   function handleIncreaseQuantity() {
-    setQuantity((prev) => prev + 1);
+    increaseProductQuantity(product.id);
   }
 
   return (
@@ -64,7 +62,7 @@ export function ProductCart({ product }: ProductCartProps) {
               <ArrowLeftIcon size={16} />
             </Button>
 
-            <span className="text-xs">{quantity}</span>
+            <span className="text-xs">{product.quantity}</span>
 
             <Button
               size={"icon"}
