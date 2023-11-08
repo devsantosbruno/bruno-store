@@ -38,10 +38,7 @@ export function Info({ product }: InfoProps) {
           R$ {normalizeValue(product.totalPrice)}
         </h2>
         {hasDiscount && (
-          <Discount
-            title={`${product.discountPercentage}%`}
-            className="absolute left-3 top-3"
-          />
+          <Discount content={product.discountPercentage.toString()} />
         )}
       </div>
 

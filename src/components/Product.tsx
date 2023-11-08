@@ -28,7 +28,7 @@ export function Product({ product }: ProductProps) {
 
           {hasDiscount && (
             <Discount
-              title={`${product.discountPercentage}%`}
+              content={product.discountPercentage.toString()}
               className="absolute left-3 top-3"
             />
           )}
