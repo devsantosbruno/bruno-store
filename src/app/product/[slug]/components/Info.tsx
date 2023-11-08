@@ -3,18 +3,17 @@
 import { Discount } from "@/components/Discount";
 import { Button } from "@/components/ui/button";
 import { ProductWithTotalPrice, normalizeValue } from "@/helpers/product";
+import { CartContext } from "@/providers/cart";
 import { ArrowLeftIcon, ArrowRightIcon, TruckIcon } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 interface InfoProps {
-  product: Pick<
-    ProductWithTotalPrice,
-    "basePrice" | "description" | "discountPercentage" | "name" | "totalPrice"
-  >;
+  product: ProductWithTotalPrice;
 }
 
 export function Info({ product }: InfoProps) {
   const [quantity, setQuantity] = useState(1);
+  const { addProductToCart } = useContext(CartContext);
 
   const hasDiscount = product.discountPercentage > 0;
 
@@ -27,6 +26,10 @@ export function Info({ product }: InfoProps) {
 
   function handleIncreaseQuantity() {
     setQuantity((prev) => prev + 1);
+  }
+
+  function handleAddToCart() {
+    addProductToCart({ ...product, quantity });
   }
 
   return (
@@ -73,7 +76,10 @@ export function Info({ product }: InfoProps) {
         <p className="text-justify text-sm opacity-70">{product.description}</p>
       </div>
 
-      <Button className="mt-8 py-6 font-bold uppercase">
+      <Button
+        className="mt-8 py-6 font-bold uppercase"
+        onClick={handleAddToCart}
+      >
         Adicionar ao carrinho
       </Button>
 

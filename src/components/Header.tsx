@@ -9,6 +9,8 @@ import {
   ShoppingCartIcon,
 } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import { Cart } from "./Cart";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
@@ -20,7 +22,6 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "./ui/sheet";
-import Link from "next/link";
 
 export function Header() {
   const { status, data } = useSession();
@@ -117,9 +118,17 @@ export function Header() {
         </h1>
       </Link>
 
-      <Button size="icon" variant="outline">
-        <ShoppingCartIcon />
-      </Button>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button size="icon" variant="outline">
+            <ShoppingCartIcon />
+          </Button>
+        </SheetTrigger>
+
+        <SheetContent>
+          <Cart />
+        </SheetContent>
+      </Sheet>
     </Card>
   );
 }
