@@ -11,8 +11,8 @@ export async function createCheckout(products: CartProduct[]) {
   const checkout = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     mode: "payment",
-    cancel_url: "http://localhost:3000/",
-    success_url: "http://localhost:3000/",
+    cancel_url: process.env.HOST_URL,
+    success_url: process.env.HOST_URL,
     line_items: products.map((product) => {
       return {
         price_data: {
