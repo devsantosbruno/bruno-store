@@ -33,57 +33,59 @@ export function Cart() {
         Carrinho
       </Badge>
 
-      <ScrollArea className="h-full">
-        {products.length ? (
-          <div className="flex flex-col gap-7">
-            {products.map((item) => (
-              <ProductCart
-                key={item.id}
-                product={totalPriceFormatted(item) as any}
-              />
-            ))}
+      {!products.length ? (
+        <h3 className="text-center font-semibold">Carrinho vazio!</h3>
+      ) : (
+        <>
+          <ScrollArea className="h-full">
+            <div className="flex flex-col gap-7">
+              {products.map((item) => (
+                <ProductCart
+                  key={item.id}
+                  product={totalPriceFormatted(item) as any}
+                />
+              ))}
+            </div>
+          </ScrollArea>
+
+          <div className="flex flex-col gap-3">
+            <Separator />
+
+            <div className="flex items-center justify-between text-xs">
+              <p>Subtotal</p>
+              <p>R$ {normalizeValue(subTotal)}</p>
+            </div>
+
+            <Separator />
+
+            <div className="flex items-center justify-between text-xs">
+              <p>Entrega</p>
+              <p>GRÁTIS</p>
+            </div>
+
+            <Separator />
+
+            <div className="flex items-center justify-between text-xs">
+              <p>Descontos</p>
+              <p>- R$ {normalizeValue(totalDiscount)}</p>
+            </div>
+
+            <Separator />
+
+            <div className="flex items-center justify-between text-xs font-bold">
+              <p>Total</p>
+              <p>R$ {normalizeValue(total)}</p>
+            </div>
           </div>
-        ) : (
-          <h3 className="text-center font-semibold">Carrinho vazio!</h3>
-        )}
-      </ScrollArea>
 
-      <div className="flex flex-col gap-3">
-        <Separator />
-
-        <div className="flex items-center justify-between text-xs">
-          <p>Subtotal</p>
-          <p>R$ {normalizeValue(subTotal)}</p>
-        </div>
-
-        <Separator />
-
-        <div className="flex items-center justify-between text-xs">
-          <p>Entrega</p>
-          <p>GRÁTIS</p>
-        </div>
-
-        <Separator />
-
-        <div className="flex items-center justify-between text-xs">
-          <p>Descontos</p>
-          <p>- R$ {normalizeValue(totalDiscount)}</p>
-        </div>
-
-        <Separator />
-
-        <div className="flex items-center justify-between text-xs font-bold">
-          <p>Total</p>
-          <p>R$ {normalizeValue(total)}</p>
-        </div>
-      </div>
-
-      <Button
-        className="mt-8 py-6 font-bold uppercase"
-        onClick={handleFinishPurchase}
-      >
-        Finalizar compra
-      </Button>
+          <Button
+            className="mt-8 py-6 font-bold uppercase"
+            onClick={handleFinishPurchase}
+          >
+            Finalizar compra
+          </Button>
+        </>
+      )}
     </div>
   );
 }
