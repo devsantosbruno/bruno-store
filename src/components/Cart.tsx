@@ -4,6 +4,8 @@ import { ShoppingCartIcon } from "lucide-react";
 import { useContext } from "react";
 import { ProductCart } from "./ProductCart";
 import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
+import { ScrollArea } from "./ui/scroll-area";
 import { Separator } from "./ui/separator";
 
 export function Cart() {
@@ -11,7 +13,7 @@ export function Cart() {
     useContext(CartContext);
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex h-full flex-col gap-5">
       <Badge
         className="w-fit gap-1 border-2 border-primary px-3 py-[0.375rem] text-base uppercase"
         variant={"outline"}
@@ -20,15 +22,20 @@ export function Cart() {
         Carrinho
       </Badge>
 
-      {products.length ? (
-        products.map((item) => (
-          <div className="flex flex-col gap-5" key={item.id}>
-            <ProductCart product={totalPriceFormatted(item) as any} />
+      <ScrollArea className="h-full">
+        {products.length ? (
+          <div className="flex flex-col gap-7">
+            {products.map((item) => (
+              <ProductCart
+                key={item.id}
+                product={totalPriceFormatted(item) as any}
+              />
+            ))}
           </div>
-        ))
-      ) : (
-        <h3 className="text-center font-semibold">Carrinho vazio!</h3>
-      )}
+        ) : (
+          <h3 className="text-center font-semibold">Carrinho vazio!</h3>
+        )}
+      </ScrollArea>
 
       <div className="flex flex-col gap-3">
         <Separator />
@@ -59,6 +66,10 @@ export function Cart() {
           <p>R$ {normalizeValue(total)}</p>
         </div>
       </div>
+
+      <Button className="mt-8 py-6 font-bold uppercase">
+        Finalizar compra
+      </Button>
     </div>
   );
 }
