@@ -125,7 +125,7 @@ export function Header() {
           </Button>
         </SheetTrigger>
 
-        <SheetContent>
+        <SheetContent className="w-[90vw]">
           <Cart />
         </SheetContent>
       </Sheet>
